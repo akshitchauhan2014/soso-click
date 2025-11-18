@@ -71,7 +71,7 @@ function CameraFilter({ updateSession }) {
             <h3 className="font-semibold text-sm mb-1">Preview</h3>
             <div
               style={{
-                backgroundColor: "#d9d9d9"
+                backgroundColor: "#f6DDD8"
               }}
               className="rounded-lg overflow-hidden p-1 flex-1 flex items-center justify-center">
               <Webcam
@@ -98,12 +98,12 @@ function CameraFilter({ updateSession }) {
           {/* Filters Section - Right Side */}
           <div className="w-64 flex flex-col gap-3">
             <h3 className="font-semibold text-sm">Filters</h3>
-            <div className="grid grid-cols-2 gap-3 overflow-y-auto">
+            <div className="flex flex-col gap-3 overflow-x-auto pb-2">
               {Object.keys(filterStyles).map(key => (
                 <button
                   key={key}
                   onClick={() => setFilter(key)}
-                  className={`p-3 rounded-lg border-2 text-sm font-semibold transition-all ${filter === key ? 'border-rose-400 bg-rose-50' : 'border-gray-200 hover:border-gray-300'}`}
+                  className={`flex-shrink-0 p-3 rounded-lg border-2 text-sm font-semibold transition-all ${filter === key ? 'border-rose-400 bg-rose-50' : 'border-gray-200 hover:border-gray-300'}`}
                 >
                   <div
                     style={{ filter: filterStyles[key] }}
