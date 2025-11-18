@@ -1,4 +1,3 @@
-riptreact
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
