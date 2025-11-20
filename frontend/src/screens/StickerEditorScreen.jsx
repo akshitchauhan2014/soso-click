@@ -13,19 +13,24 @@ function StickerEditorScreen({ sessionData, updateSession }) {
     // Sticker library - replace these URLs with your actual sticker image paths
     const stickerLibrary = [
         {
-            id: 'heart', url: '/images/stick1.jpg', name: 'Heart'
+            id: 'heart', url: '/images/stick1.png', name: 'Heart'
         },
-        { id: 'star', url: '/images/stick2.jpg', name: 'Star' },
-        { id: 'smile', url: '/images/stick3.jpg', name: 'Smile' },
-        { id: 'flower', url: '/images/stick4.jpg', name: 'Flower' },
-        { id: 'balloon', url: '/images/stick5.jpg', name: 'Balloon' },
-        { id: 'confetti', url: '/images/stick6.jpg', name: 'Confetti' },
-        { id: 'butterfly', url: '/images/stick7.jpg', name: 'Butterfly' },
-        { id: 'music', url: '/images/stick8.jpg', name: 'Music' },
-        { id: 'crown', url: '/images/stick9.jpg', name: 'Crown' },
-        { id: 'sparkle', url: '/images/stick10.jpg', name: 'Sparkle' },
-        { id: 'peace', url: '/images/stick11.jpg', name: 'Peace' },
-        { id: 'rainbow', url: '/images/stick12.jpg', name: 'Rainbow' }
+        { id: 'star', url: '/images/stick2.png', name: 'Star' },
+        { id: 'smile', url: '/images/stick3.png', name: 'Smile' },
+        { id: 'flower', url: '/images/stick4.png', name: 'Flower' },
+        { id: 'balloon', url: '/images/stick5.png', name: 'Balloon' },
+        { id: 'confetti', url: '/images/stick6.png', name: 'Confetti' },
+        { id: 'butterfly', url: '/images/stick7.png', name: 'Butterfly' },
+        { id: 'music', url: '/images/stick8.png', name: 'Music' },
+        { id: 'crown', url: '/images/stick9.png', name: 'Crown' },
+        { id: 'sparkle', url: '/images/stick10.png', name: 'Sparkle' },
+        { id: 'peace', url: '/images/stick11.png', name: 'Peace' },
+        { id: 'rainbow', url: '/images/stick12.png', name: 'Rainbow' },
+        { id: 'music', url: '/images/stick13.png', name: 'Music' },
+        { id: 'crown', url: '/images/stick14.png', name: 'Crown' },
+        { id: 'sparkle', url: '/images/stick15.png', name: 'Sparkle' },
+        { id: 'peace', url: '/images/stick16.png', name: 'Peace' },
+        { id: 'rainbow', url: '/images/stick17.png', name: 'Rainbow' }
     ];
 
     const addSticker = (stickerData) => {
@@ -384,9 +389,9 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                         key={sticker.id}
                                         onClick={() => addSticker(sticker)}
                                         style={{
-                                            background: "#f5f5f5",
+                                            // background: "#f5f5f5",
                                             borderRadius: "8px",
-                                            padding: "8px",
+                                            // padding: "8px",
                                             cursor: "pointer",
                                             border: "2px solid #e0e0e0",
                                             transition: "all 0.2s ease"
@@ -396,7 +401,7 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                         <div
                                             style={{
                                                 aspectRatio: "1",
-                                                background: "#ffffff",
+                                                // background: "#ffffff",
                                                 borderRadius: "6px",
                                                 display: "flex",
                                                 alignItems: "center",
