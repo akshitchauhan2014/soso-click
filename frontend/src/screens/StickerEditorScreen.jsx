@@ -55,6 +55,12 @@ function StickerEditorScreen({ sessionData, updateSession }) {
         }
     };
 
+    const handleStickerClick = (e, stickerId) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setSelectedStickerId(stickerId);
+    };
+
     const handleStickerMouseDown = (e, stickerId) => {
         e.preventDefault();
         e.stopPropagation();
@@ -66,11 +72,18 @@ function StickerEditorScreen({ sessionData, updateSession }) {
         const startStickerX = sticker.x;
         const startStickerY = sticker.y;
 
+        let hasMoved = false;
+
         const handleMouseMove = (moveEvent) => {
             const currentX = moveEvent.clientX || moveEvent.touches?.[0]?.clientX;
             const currentY = moveEvent.clientY || moveEvent.touches?.[0]?.clientY;
             const deltaX = currentX - startX;
             const deltaY = currentY - startY;
+
+            // Consider it a drag if moved more than 3 pixels
+            if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+                hasMoved = true;
+            }
 
             setStickers(prev => prev.map(s =>
                 s.id === stickerId
@@ -173,9 +186,10 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                 finalImage = await mergeStickersWithImage();
             }
 
+            // Update the compositeImage in session (not a separate stickeredImage)
             updateSession({
-                compositeImage: finalImage,
-                stickers: stickers
+                compositeImage: finalImage, // This updates the main composite image
+                stickers: stickers // Save sticker data for reference
             });
 
             navigate('/share');
@@ -258,6 +272,7 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                 {stickers.map((sticker) => (
                                     <div
                                         key={sticker.id}
+                                        onClick={(e) => handleStickerClick(e, sticker.id)}
                                         onMouseDown={(e) => handleStickerMouseDown(e, sticker.id)}
                                         onTouchStart={(e) => handleStickerMouseDown(e, sticker.id)}
                                         style={{
@@ -267,10 +282,12 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                             width: `${sticker.width}px`,
                                             height: `${sticker.height}px`,
                                             transform: `rotate(${sticker.rotation}deg)`,
-                                            cursor: 'move',
-                                            border: selectedStickerId === sticker.id ? '2px dashed #FF6B6A' : 'none',
+                                            cursor: 'pointer',
+                                            border: selectedStickerId === sticker.id ? '3px dashed #FF6B6A' : '2px solid transparent',
                                             padding: '2px',
-                                            zIndex: selectedStickerId === sticker.id ? 1000 : 1
+                                            zIndex: selectedStickerId === sticker.id ? 1000 : 1,
+                                            transition: 'border 0.2s ease',
+                                            boxShadow: selectedStickerId === sticker.id ? '0 0 10px rgba(255, 107, 106, 0.5)' : 'none'
                                         }}
                                     >
                                         <img
@@ -284,6 +301,28 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                             }}
                                             draggable={false}
                                         />
+                                        {selectedStickerId === sticker.id && (
+                                            <div
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '-8px',
+                                                    right: '-8px',
+                                                    background: '#FF6B6A',
+                                                    color: 'white',
+                                                    borderRadius: '50%',
+                                                    width: '20px',
+                                                    height: '20px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    fontSize: '12px',
+                                                    fontWeight: 'bold',
+                                                    pointerEvents: 'none'
+                                                }}
+                                            >
+                                                ✓
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -389,9 +428,9 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                         key={sticker.id}
                                         onClick={() => addSticker(sticker)}
                                         style={{
-                                            // background: "#f5f5f5",
+                                            background: "#f5f5f5",
                                             borderRadius: "8px",
-                                            // padding: "8px",
+                                            padding: "8px",
                                             cursor: "pointer",
                                             border: "2px solid #e0e0e0",
                                             transition: "all 0.2s ease"
@@ -401,7 +440,7 @@ function StickerEditorScreen({ sessionData, updateSession }) {
                                         <div
                                             style={{
                                                 aspectRatio: "1",
-                                                // background: "#ffffff",
+                                                background: "#ffffff",
                                                 borderRadius: "6px",
                                                 display: "flex",
                                                 alignItems: "center",
