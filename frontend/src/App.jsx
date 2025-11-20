@@ -13,6 +13,7 @@ import ShareScreen from './screens/ShareScreen';
 import ThankYou from './screens/ThankYou';
 import PaymentQR from './screens/PaymentQR';
 import FrameSelectionScreen from './screens/FrameSelectionScreen';
+import StickerEditorScreen from './screens/StickerEditorScreen';
 // import CombinedCamera from './screens/CombinedCamera';
 // Header removed: app uses full-screen pages without a nav/header
 
@@ -40,6 +41,10 @@ function App() {
           <Route
             path="/frame-selection"
             element={<FrameSelectionScreen sessionData={sessionData} updateSession={updateSession} />}
+          />          {/* <Route path="/camera-combine" element={<CombinedCamera updateSession={updateSession} />} /> */}
+          <Route
+            path="/stickers"
+            element={<StickerEditorScreen sessionData={sessionData} updateSession={updateSession} />}
           />          {/* <Route path="/camera-combine" element={<CombinedCamera updateSession={updateSession} />} /> */}
           <Route path="/camera-settings" element={<CameraSettings sessionData={sessionData} updateSession={updateSession} />} />
           <Route path="/payment-full" element={<PaymentScreen sessionData={sessionData} updateSession={updateSession} />} />

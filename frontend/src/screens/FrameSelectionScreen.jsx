@@ -254,7 +254,7 @@ function FrameSelectionScreen({ sessionData, updateSession }) {
                 originalCompositeImage: compositeImage // Keep original for reference
             });
 
-            navigate('/share');
+            navigate('/stickers');
         } catch (error) {
             console.error('Error applying frame:', error);
             setIsProcessing(false);
