@@ -13,6 +13,7 @@
  * - Download functionality with QR code generation
  * - Server-side photo saving and URL generation
  * - Navigation to start new session
+ * - Auto-redirect to thank you page after 10 seconds
  * 
  * @param {Object} sessionData - Current session data including edited photos and composite
  * @param {Function} updateSession - Callback to update session data
@@ -21,6 +22,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 
 function ShareScreen({ sessionData, updateSession }) {
   const navigate = useNavigate();
@@ -32,6 +34,8 @@ function ShareScreen({ sessionData, updateSession }) {
   const [downloadUrls, setDownloadUrls] = useState([]);
   // Current photo index for multi-photo viewing
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  // Countdown timer for auto-redirect
+  const [countdown, setCountdown] = useState(10);
 
   // Get edited photos: Support both legacy single photo and new multi-photo format
   const editedPhotos = sessionData.editedPhotos || (sessionData.editedPhoto ? [sessionData.editedPhoto] : []);
@@ -41,6 +45,30 @@ function ShareScreen({ sessionData, updateSession }) {
   const currentPhoto = editedPhotos[currentPhotoIndex] || compositeImage;
   // Check if multiple photos exist (for display purposes)
   const isMultiPhoto = editedPhotos.length > 1;
+
+  // Auto-redirect to thank you page after 10 seconds
+  useEffect(() => {
+    const redirectTimer = setTimeout(() => {
+      navigate('/thankyou');
+    }, 10000); // 10 seconds
+
+    // Countdown timer for visual feedback
+    const countdownInterval = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Cleanup timers on unmount
+    return () => {
+      clearTimeout(redirectTimer);
+      clearInterval(countdownInterval);
+    };
+  }, [navigate]);
 
   // Auto-save composite image to server when component mounts or image changes
   useEffect(() => {
@@ -179,6 +207,7 @@ function ShareScreen({ sessionData, updateSession }) {
   return (
     // Main container with gradient background
     <div style={{ background: "#f6DDD8", height: "100vh", overflow: "hidden" }} className="screen-container items-center justify-center overflow-hidden">
+      <TwinklingStars />
       <div
         style={{
           height: "80%",
@@ -192,6 +221,8 @@ function ShareScreen({ sessionData, updateSession }) {
         <div className="text-center mb-2">
           <h2 className="text-2xl font-bold text-gray-900">Photo Ready!</h2>
           <p className="text-xs text-gray-600">{isMultiPhoto ? `Photo ${currentPhotoIndex + 1} of ${editedPhotos.length}` : 'Print or download'}</p>
+          {/* Countdown timer display */}
+          <p className="text-xs text-gray-500 mt-1">Redirecting in {countdown}s...</p>
         </div>
 
         {/* Main content: Preview and action panels */}

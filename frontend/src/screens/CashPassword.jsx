@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Delete } from 'lucide-react';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
+
 
 function CashPassword({ updateSession }) {
   const [password, setPassword] = useState('');
@@ -63,8 +65,8 @@ function CashPassword({ updateSession }) {
                 type="button"
                 onClick={() => handleKeypadClick(btn)}
                 className={`p-4 rounded-lg font-semibold text-xl transition-all ${btn === 'backspace'
-                    ? 'col-span-2 bg-red-500 hover:bg-red-600 text-white flex items-center justify-center gap-2'
-                    : 'bg-blue-500 hover:bg-blue-600 text-white active:scale-95'
+                  ? 'col-span-2 bg-red-500 hover:bg-red-600 text-white flex items-center justify-center gap-2'
+                  : 'bg-blue-500 hover:bg-blue-600 text-white active:scale-95'
                   }`}
               >
                 {btn === 'backspace' ? (

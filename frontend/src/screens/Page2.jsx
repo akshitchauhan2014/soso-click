@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 
 const Page2 = () => {
   const navigate = useNavigate();
 
   return (
     <div style={{ background: "#f6DDD8", height: "100vh", overflow: "hidden" }} className="flex items-center justify-center">
+      <FallingHearts />
       <div
         className="relative w-full max-w-6xl rounded-3xl"
         style={{

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 
 function CameraScreen({ sessionData, updateSession }) {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ function CameraScreen({ sessionData, updateSession }) {
 
   useEffect(() => {
     if (countdown === null) return;
-    
+
     if (countdown === 0) {
       capturePhoto();
       return;
@@ -144,6 +145,7 @@ function CameraScreen({ sessionData, updateSession }) {
 
   return (
     <div className="screen-container items-center justify-center overflow-hidden">
+      <FallingHearts />
       <div className="max-w-7xl w-full h-full flex flex-col">
         <div className="text-center mb-2">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -306,11 +308,10 @@ function CameraScreen({ sessionData, updateSession }) {
                     key={key}
                     onClick={() => setSelectedFrame(key)}
                     disabled={capturedImages.length > 0}
-                    className={`w-full p-3 rounded-xl border-2 transition-all text-left ${
-                      selectedFrame === key
-                        ? 'border-primary-500 bg-primary-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    } ${capturedImages.length > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`w-full p-3 rounded-xl border-2 transition-all text-left ${selectedFrame === key
+                      ? 'border-primary-500 bg-primary-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                      } ${capturedImages.length > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
                     <div className="text-lg font-semibold">{frame.name}</div>
                     <div className="mt-1">

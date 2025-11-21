@@ -25,7 +25,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 
 
-
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 import { useNavigate } from 'react-router-dom';
 import { createGridComposite } from '../utils/imageComposite';
 
@@ -299,6 +299,7 @@ function EditScreen({ sessionData, updateSession }) {
 
   return (
     <div style={{ background: "#f6DDD8", height: "100vh", overflow: "hidden" }} className="items-center justify-center">
+      <FallingHearts />
       <div className="text-center mb-1 pt-2">
         <h2 className="text-2xl font-bold text-gray-900">Edit Photo {currentPhotoIndex + 1} of {photos.length}</h2>
         <p className="text-xs text-gray-600">Filters, adjustments, stickers</p>
@@ -485,6 +486,12 @@ function EditScreen({ sessionData, updateSession }) {
             </div>
           </div>
         </div>
+        <img
+          src="/images/teddy_left.png"
+          alt="teddy bear with camera"
+          className="absolute"
+          style={{ left: 40, bottom: 40, width: 120, height: 'auto', zIndex: 1 }}
+        />
       </div>
     </div>
   );

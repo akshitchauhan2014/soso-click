@@ -22,6 +22,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 
 function CameraSettings({ updateSession, sessionData }) {
   const navigate = useNavigate();
@@ -184,6 +185,7 @@ function CameraSettings({ updateSession, sessionData }) {
 
   return (
     <div style={{ background: "#f6DDD8", height: "100vh", overflow: "hidden" }} className="w-screen h-screen flex items-center justify-center overflow-hidden">
+      <FallingHearts />
       <div
         style={{
           height: "100%",

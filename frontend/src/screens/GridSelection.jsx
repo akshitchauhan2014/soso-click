@@ -22,6 +22,8 @@
  */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
+
 
 function GridSelection({ updateSession }) {
   const navigate = useNavigate();
@@ -79,6 +81,7 @@ function GridSelection({ updateSession }) {
           minHeight: '120px',
         }}
       >
+        <FallingHearts />
         {cells}
       </div>
     );

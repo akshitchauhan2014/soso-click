@@ -12,6 +12,9 @@
  * @param {number} marginPercent - Margin as percentage of cell size (default 2%)
  * @returns {Promise<string>} Base64 data URL of the composite image
  */
+
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
+
 export async function createGridComposite(photos, grid, dpi = 300, marginPercent = 2) {
   if (!photos || photos.length === 0) {
     throw new Error('No photos provided');
@@ -44,11 +47,11 @@ export async function createGridComposite(photos, grid, dpi = 300, marginPercent
     if (grid.cols === 1 && grid.rows === 1) {
       printSize = { width: 4, height: 6 }; // Single photo
     } else if (grid.cols === 2 && grid.rows === 1) {
-      printSize = { width: 2, height: 4 }; // 2 vertical
+      printSize = { width: 3, height: 4 }; // 2 vertical
     } else if (grid.cols === 2 && grid.rows === 2) {
-      printSize = { width: 4, height: 6 }; // 4 cut
+      printSize = { width: 5, height: 7 }; // 4 cut
     } else if (grid.cols === 3 && grid.rows === 2) {
-      printSize = { width: 5, height: 7 }; // 6 cut
+      printSize = { width: 7, height: 8 }; // 6 cut
     } else {
       // Default: calculate based on aspect ratio
       const aspect = grid.cols / grid.rows;

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 
 function StickerEditorScreen({ sessionData, updateSession }) {
     const navigate = useNavigate();
@@ -215,6 +216,7 @@ function StickerEditorScreen({ sessionData, updateSession }) {
             minHeight: "100vh",
             overflowY: "auto"
         }}>
+            <FallingHearts />
             <canvas ref={canvasRef} style={{ display: 'none' }} />
 
             <div className="text-center pt-2">

@@ -14,6 +14,7 @@
  */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FallingSparkles, FloatingBubbles, FallingHearts, ConfettiRain, TwinklingStars } from '../components/Decoration';
 
 function ThankYou() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function ThankYou() {
   return (
     // Main container with light pink background
     <div style={{ background: "#f6DDD8", height: "100vh", overflow: "hidden" }} className="flex items-center justify-center p-6">
+      <FallingHearts />
       {/* Content panel: Cream background with coral-pink border */}
       <div
         className="relative rounded-3xl text-center max-w-3xl w-full"
